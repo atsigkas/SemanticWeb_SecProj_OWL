@@ -436,7 +436,6 @@ CoffeeShop:Person rdf:type owl:Class ;
 
 ###  http://test1.project.rdfs/CoffeeShop#Rank
 CoffeeShop:Rank rdf:type owl:Class ;
-                owl:equivalentClass CoffeeShop:Staff ;
                 rdfs:subClassOf rdfs:Resource .
 
 
