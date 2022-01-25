@@ -1,0 +1,1904 @@
+@prefix : <http://test1.project.rdfs/CoffeeShop#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix spin: <http://spinrdf.org/spin#> .
+@prefix CoffeeShop: <http://test1.project.rdfs/CoffeeShop#> .
+@base <http://test1.project.rdfs/CoffeeShop> .
+
+<http://test1.project.rdfs/CoffeeShop> rdf:type owl:Ontology ;
+                                        spin:imports <http://topbraid.org/spin/rdfsplus> ;
+                                        owl:versionInfo "Created with TopBraid Composer" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://spinrdf.org/spin#imports
+spin:imports rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+###  http://www.w3.org/2001/XMLSchema#time
+xsd:time rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://test1.project.rdfs/CoffeeShop#baristaShift
+CoffeeShop:baristaShift rdf:type owl:ObjectProperty ;
+                        rdfs:domain CoffeeShop:Shift ;
+                        rdfs:range CoffeeShop:Barista ;
+                        rdfs:label "baristas shift" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#clientArrival
+CoffeeShop:clientArrival rdf:type owl:ObjectProperty ;
+                         rdfs:domain CoffeeShop:Order ;
+                         rdfs:range CoffeeShop:Arrival ;
+                         rdfs:label "clients arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#drinkOrdered
+CoffeeShop:drinkOrdered rdf:type owl:ObjectProperty ;
+                        rdfs:domain CoffeeShop:Order ;
+                        rdfs:range CoffeeShop:Drink ;
+                        rdfs:label "drink Ordered" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#hasRank
+CoffeeShop:hasRank rdf:type owl:ObjectProperty ;
+                   rdfs:domain CoffeeShop:Staff ;
+                   rdfs:range CoffeeShop:Rank .
+
+
+###  http://test1.project.rdfs/CoffeeShop#madeBy
+CoffeeShop:madeBy rdf:type owl:ObjectProperty ;
+                  owl:inverseOf CoffeeShop:makes ;
+                  rdfs:domain CoffeeShop:Order ;
+                  rdfs:range CoffeeShop:Barista ;
+                  rdfs:label "made by" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#madeWith
+CoffeeShop:madeWith rdf:type owl:ObjectProperty ;
+                    rdfs:domain CoffeeShop:Drink ;
+                    rdfs:range CoffeeShop:Supply ;
+                    rdfs:label "made With" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#makes
+CoffeeShop:makes rdf:type owl:ObjectProperty ;
+                 rdfs:domain CoffeeShop:Barista ;
+                 rdfs:range CoffeeShop:Order ;
+                 rdfs:label "makes" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#orderedBy
+CoffeeShop:orderedBy rdf:type owl:ObjectProperty ;
+                     rdfs:domain CoffeeShop:Order ;
+                     rdfs:range CoffeeShop:Client ;
+                     rdfs:label "ordered by" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#oversees
+CoffeeShop:oversees rdf:type owl:ObjectProperty ,
+                             owl:TransitiveProperty ;
+                    rdfs:domain CoffeeShop:Rank ;
+                    rdfs:range CoffeeShop:Rank .
+
+
+###  http://test1.project.rdfs/CoffeeShop#packed
+CoffeeShop:packed rdf:type owl:ObjectProperty ;
+                  owl:equivalentProperty CoffeeShop:supplies ;
+                  rdfs:subPropertyOf CoffeeShop:supplies .
+
+
+###  http://test1.project.rdfs/CoffeeShop#servedBy
+CoffeeShop:servedBy rdf:type owl:ObjectProperty ;
+                    owl:inverseOf CoffeeShop:serves ;
+                    rdfs:domain CoffeeShop:Order ;
+                    rdfs:range CoffeeShop:Server ;
+                    rdfs:label "served by" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#serverShift
+CoffeeShop:serverShift rdf:type owl:ObjectProperty ;
+                       rdfs:domain CoffeeShop:Shift ;
+                       rdfs:range CoffeeShop:Server ;
+                       rdfs:label "servers Shift" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#serves
+CoffeeShop:serves rdf:type owl:ObjectProperty ;
+                  rdfs:domain CoffeeShop:Server ;
+                  rdfs:range CoffeeShop:Order ;
+                  rdfs:label "serves" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#staffPayment
+CoffeeShop:staffPayment rdf:type owl:ObjectProperty ;
+                        rdfs:domain CoffeeShop:Staff ;
+                        rdfs:range CoffeeShop:Wage ;
+                        rdfs:label "staffs payment" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#suppliedBy
+CoffeeShop:suppliedBy rdf:type owl:ObjectProperty ;
+                      owl:inverseOf CoffeeShop:supplies ;
+                      rdfs:domain CoffeeShop:Supply ;
+                      rdfs:range CoffeeShop:Supplier ;
+                      rdfs:label "Supplied By" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#supplies
+CoffeeShop:supplies rdf:type owl:ObjectProperty ;
+                    rdfs:domain CoffeeShop:Supplier ;
+                    rdfs:range CoffeeShop:Supply ;
+                    rdfs:label "supplies" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://test1.project.rdfs/CoffeeShop#amountOfAlcohol
+CoffeeShop:amountOfAlcohol rdf:type owl:DatatypeProperty ;
+                           rdfs:domain CoffeeShop:AlchoholicDrink ;
+                           rdfs:range xsd:decimal ;
+                           rdfs:label "amount of alcohol" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#amountOfCaffeine
+CoffeeShop:amountOfCaffeine rdf:type owl:DatatypeProperty ;
+                            rdfs:domain CoffeeShop:NonAlchoholicDrink ;
+                            rdfs:range xsd:string ;
+                            rdfs:label "amount of coffeine" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#birthday
+CoffeeShop:birthday rdf:type owl:DatatypeProperty ,
+                             owl:FunctionalProperty ;
+                    rdfs:domain CoffeeShop:Person ;
+                    rdfs:range xsd:date ;
+                    rdfs:label "birthday" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#comingDay
+CoffeeShop:comingDay rdf:type owl:DatatypeProperty ;
+                     rdfs:domain CoffeeShop:Arrival ;
+                     rdfs:range xsd:string ;
+                     rdfs:label "coming day" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#comingTime
+CoffeeShop:comingTime rdf:type owl:DatatypeProperty ;
+                      rdfs:domain CoffeeShop:Arrival ;
+                      rdfs:range xsd:time ;
+                      rdfs:label "coming time" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#day
+CoffeeShop:day rdf:type owl:DatatypeProperty ;
+               rdfs:domain CoffeeShop:Shift ;
+               rdfs:range xsd:string ;
+               rdfs:label "day" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#drinkPrice
+CoffeeShop:drinkPrice rdf:type owl:DatatypeProperty ;
+                      rdfs:domain CoffeeShop:Drink ;
+                      rdfs:range xsd:decimal ;
+                      rdfs:label "drink Price" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#endingTime
+CoffeeShop:endingTime rdf:type owl:DatatypeProperty ;
+                      rdfs:domain CoffeeShop:Shift ;
+                      rdfs:range xsd:time ;
+                      rdfs:label "ending time" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#extraTime
+CoffeeShop:extraTime rdf:type owl:DatatypeProperty ;
+                     rdfs:domain CoffeeShop:Shift ;
+                     rdfs:range xsd:time ;
+                     rdfs:label "extra time" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#firstName
+CoffeeShop:firstName rdf:type owl:DatatypeProperty ;
+                     rdfs:domain CoffeeShop:Person ;
+                     rdfs:range xsd:string ;
+                     rdfs:label "first Name" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#isAlchoholic
+CoffeeShop:isAlchoholic rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf owl:topDataProperty ;
+                        rdfs:domain CoffeeShop:Drink ;
+                        rdfs:range xsd:boolean .
+
+
+###  http://test1.project.rdfs/CoffeeShop#isSmoking
+CoffeeShop:isSmoking rdf:type owl:DatatypeProperty ;
+                     rdfs:domain CoffeeShop:Client ;
+                     rdfs:range xsd:boolean ;
+                     rdfs:label "Smoking" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#lastName
+CoffeeShop:lastName rdf:type owl:DatatypeProperty ;
+                    rdfs:domain CoffeeShop:Person ;
+                    rdfs:range xsd:string ;
+                    rdfs:label "last Name" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#leavingTime
+CoffeeShop:leavingTime rdf:type owl:DatatypeProperty ;
+                       rdfs:domain CoffeeShop:Arrival ;
+                       rdfs:range xsd:time ;
+                       rdfs:label "leaving time" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#mobileNumber
+CoffeeShop:mobileNumber rdf:type owl:DatatypeProperty ;
+                        rdfs:domain CoffeeShop:Person ;
+                        rdfs:range xsd:string ;
+                        rdfs:label "mobile number" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#moneyPerHour
+CoffeeShop:moneyPerHour rdf:type owl:DatatypeProperty ;
+                        rdfs:domain CoffeeShop:Wage ;
+                        rdfs:range xsd:decimal ;
+                        rdfs:label "money per hour" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#orderNumber
+CoffeeShop:orderNumber rdf:type owl:DatatypeProperty ;
+                       rdfs:domain CoffeeShop:Order ;
+                       rdfs:range xsd:integer ;
+                       rdfs:label "order number" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#preparationTime
+CoffeeShop:preparationTime rdf:type owl:DatatypeProperty ;
+                           rdfs:domain CoffeeShop:Drink ;
+                           rdfs:range xsd:decimal ;
+                           rdfs:label "preparation time" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#startingTime
+CoffeeShop:startingTime rdf:type owl:DatatypeProperty ;
+                        rdfs:domain CoffeeShop:Shift ;
+                        rdfs:range xsd:time ;
+                        rdfs:label "starting time" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#typeOfDrink
+CoffeeShop:typeOfDrink rdf:type owl:DatatypeProperty ;
+                       rdfs:domain CoffeeShop:Drink ;
+                       rdfs:range xsd:string ;
+                       rdfs:label "type of drink" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#worksInside
+CoffeeShop:worksInside rdf:type owl:DatatypeProperty ;
+                       rdfs:domain CoffeeShop:Staff ;
+                       rdfs:range xsd:boolean ;
+                       rdfs:label "works inside" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#worksOutside
+CoffeeShop:worksOutside rdf:type owl:DatatypeProperty ;
+                        rdfs:domain CoffeeShop:Staff ;
+                        rdfs:range xsd:boolean ;
+                        rdfs:label "works outside" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://test1.project.rdfs/CoffeeShop#AlchoholicDrink
+CoffeeShop:AlchoholicDrink rdf:type owl:Class ;
+                           owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                 owl:onProperty CoffeeShop:isAlchoholic ;
+                                                 owl:hasValue "true"^^xsd:boolean
+                                               ] ;
+                           rdfs:subClassOf CoffeeShop:Drink ;
+                           rdfs:label "AlchoholicDrink" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Arrival
+CoffeeShop:Arrival rdf:type owl:Class ;
+                   rdfs:subClassOf rdfs:Resource ;
+                   rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Barista
+CoffeeShop:Barista rdf:type owl:Class ;
+                   rdfs:subClassOf CoffeeShop:Staff ;
+                   rdfs:label "Barista" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Beer
+CoffeeShop:Beer rdf:type owl:Class ;
+                owl:equivalentClass [ rdf:type owl:Restriction ;
+                                      owl:onProperty CoffeeShop:madeWith ;
+                                      owl:someValuesFrom CoffeeShop:BeerSupply
+                                    ] ;
+                rdfs:subClassOf CoffeeShop:AlchoholicDrink ;
+                rdfs:label "Beer" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#BeerSupply
+CoffeeShop:BeerSupply rdf:type owl:Class ;
+                      rdfs:subClassOf CoffeeShop:Supply .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Cashier
+CoffeeShop:Cashier rdf:type owl:Class ;
+                   rdfs:subClassOf CoffeeShop:Staff ;
+                   rdfs:label "Cashier" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Client
+CoffeeShop:Client rdf:type owl:Class ;
+                  rdfs:subClassOf CoffeeShop:Person ;
+                  rdfs:label "Client" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Cocktail
+CoffeeShop:Cocktail rdf:type owl:Class ;
+                    owl:equivalentClass [ owl:intersectionOf ( CoffeeShop:Juice
+                                                               CoffeeShop:Rum
+                                                             ) ;
+                                          rdf:type owl:Class
+                                        ] ;
+                    rdfs:subClassOf CoffeeShop:AlchoholicDrink .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Coffee
+CoffeeShop:Coffee rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty CoffeeShop:madeWith ;
+                                        owl:someValuesFrom CoffeeShop:CoffeeSupply
+                                      ] ;
+                  rdfs:subClassOf CoffeeShop:NonAlchoholicDrink ;
+                  rdfs:label "Coffee" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#CoffeeSupply
+CoffeeShop:CoffeeSupply rdf:type owl:Class ;
+                        rdfs:subClassOf CoffeeShop:Supply .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Drink
+CoffeeShop:Drink rdf:type owl:Class ;
+                 rdfs:subClassOf rdfs:Resource ;
+                 rdfs:label "Drink" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Juice
+CoffeeShop:Juice rdf:type owl:Class ;
+                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                       owl:onProperty CoffeeShop:madeWith ;
+                                       owl:someValuesFrom CoffeeShop:JuiceSupply
+                                     ] ;
+                 rdfs:subClassOf CoffeeShop:NonAlchoholicDrink ;
+                 rdfs:label "Juice" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#JuiceSupply
+CoffeeShop:JuiceSupply rdf:type owl:Class ;
+                       rdfs:subClassOf CoffeeShop:Supply .
+
+
+###  http://test1.project.rdfs/CoffeeShop#NonAlchoholicDrink
+CoffeeShop:NonAlchoholicDrink rdf:type owl:Class ;
+                              owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                    owl:onProperty CoffeeShop:isAlchoholic ;
+                                                    owl:hasValue "false"^^xsd:boolean
+                                                  ] ;
+                              rdfs:subClassOf CoffeeShop:Drink ;
+                              rdfs:label "Non_AlchoholicDrink" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Order
+CoffeeShop:Order rdf:type owl:Class ;
+                 rdfs:subClassOf rdfs:Resource ;
+                 rdfs:label "Order" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#OtherSupplies
+CoffeeShop:OtherSupplies rdf:type owl:Class ;
+                         rdfs:subClassOf CoffeeShop:Supply .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Person
+CoffeeShop:Person rdf:type owl:Class ;
+                  rdfs:subClassOf rdfs:Resource ;
+                  rdfs:label "Person" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Rank
+CoffeeShop:Rank rdf:type owl:Class ;
+                owl:equivalentClass CoffeeShop:Staff ;
+                rdfs:subClassOf rdfs:Resource .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Rum
+CoffeeShop:Rum rdf:type owl:Class ;
+               owl:equivalentClass [ rdf:type owl:Restriction ;
+                                     owl:onProperty CoffeeShop:madeWith ;
+                                     owl:someValuesFrom CoffeeShop:RumSupply
+                                   ] ;
+               rdfs:subClassOf CoffeeShop:AlchoholicDrink .
+
+
+###  http://test1.project.rdfs/CoffeeShop#RumSupply
+CoffeeShop:RumSupply rdf:type owl:Class ;
+                     rdfs:subClassOf CoffeeShop:Supply .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Server
+CoffeeShop:Server rdf:type owl:Class ;
+                  rdfs:subClassOf CoffeeShop:Staff ;
+                  rdfs:label "Server" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Shift
+CoffeeShop:Shift rdf:type owl:Class ;
+                 rdfs:subClassOf rdfs:Resource ;
+                 rdfs:label "Shift" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Staff
+CoffeeShop:Staff rdf:type owl:Class ;
+                 rdfs:subClassOf CoffeeShop:Person ;
+                 rdfs:label "Staff" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Supplier
+CoffeeShop:Supplier rdf:type owl:Class ;
+                    rdfs:subClassOf CoffeeShop:Person ;
+                    rdfs:label "Supplier" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Supply
+CoffeeShop:Supply rdf:type owl:Class ;
+                  rdfs:subClassOf rdfs:Resource ;
+                  rdfs:label "Supply" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Tea
+CoffeeShop:Tea rdf:type owl:Class ;
+               owl:equivalentClass [ rdf:type owl:Restriction ;
+                                     owl:onProperty CoffeeShop:madeWith ;
+                                     owl:someValuesFrom CoffeeShop:TeaSupply
+                                   ] ;
+               rdfs:subClassOf CoffeeShop:NonAlchoholicDrink ;
+               rdfs:label "Tea" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#TeaSupply
+CoffeeShop:TeaSupply rdf:type owl:Class ;
+                     rdfs:subClassOf CoffeeShop:Supply .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Tequila
+CoffeeShop:Tequila rdf:type owl:Class ;
+                   owl:equivalentClass [ rdf:type owl:Restriction ;
+                                         owl:onProperty CoffeeShop:madeWith ;
+                                         owl:someValuesFrom CoffeeShop:TequilaSupply
+                                       ] ;
+                   rdfs:subClassOf CoffeeShop:AlchoholicDrink .
+
+
+###  http://test1.project.rdfs/CoffeeShop#TequilaSupply
+CoffeeShop:TequilaSupply rdf:type owl:Class ;
+                         rdfs:subClassOf CoffeeShop:Supply .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Wage
+CoffeeShop:Wage rdf:type owl:Class ;
+                rdfs:subClassOf rdfs:Resource ;
+                rdfs:label "Money" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Whisky
+CoffeeShop:Whisky rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty CoffeeShop:madeWith ;
+                                        owl:someValuesFrom CoffeeShop:WhiskySupply
+                                      ] ;
+                  rdfs:subClassOf CoffeeShop:AlchoholicDrink ;
+                  rdfs:label "Whisky" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#WhiskySupply
+CoffeeShop:WhiskySupply rdf:type owl:Class ;
+                        rdfs:subClassOf CoffeeShop:Supply .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Wine
+CoffeeShop:Wine rdf:type owl:Class ;
+                owl:equivalentClass [ rdf:type owl:Restriction ;
+                                      owl:onProperty CoffeeShop:madeWith ;
+                                      owl:someValuesFrom CoffeeShop:WineSupply
+                                    ] ;
+                rdfs:subClassOf CoffeeShop:AlchoholicDrink ;
+                rdfs:label "Wine" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#WineSupply
+CoffeeShop:WineSupply rdf:type owl:Class ;
+                      rdfs:subClassOf CoffeeShop:Supply .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#Resource
+rdfs:Resource rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://test1.project.rdfs/CoffeeShop#Apple_Juice
+CoffeeShop:Apple_Juice rdf:type owl:NamedIndividual ,
+                                CoffeeShop:Juice ;
+                       CoffeeShop:madeWith CoffeeShop:Bottle_Juice ;
+                       CoffeeShop:amountOfCaffeine "0%" ;
+                       CoffeeShop:drinkPrice 2.20 ;
+                       CoffeeShop:preparationTime 1.0 ;
+                       CoffeeShop:typeOfDrink "glass Apple juice" ;
+                       rdfs:label "Apple Juice" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Bag_Tea
+CoffeeShop:Bag_Tea rdf:type owl:NamedIndividual ,
+                            CoffeeShop:Supply ,
+                            CoffeeShop:TeaSupply ;
+                   CoffeeShop:suppliedBy CoffeeShop:Supplier_1 ;
+                   rdfs:label "Bag tea" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Barista5
+CoffeeShop:Barista5 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Barista ;
+                    CoffeeShop:hasRank CoffeeShop:junior .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Barista_1
+CoffeeShop:Barista_1 rdf:type owl:NamedIndividual ,
+                              CoffeeShop:Barista ;
+                     CoffeeShop:hasRank CoffeeShop:supervisor ;
+                     CoffeeShop:staffPayment CoffeeShop:baristaWage ;
+                     CoffeeShop:birthday "2002-04-12"^^xsd:date ;
+                     CoffeeShop:firstName "Pavlos" ;
+                     CoffeeShop:lastName "Petrou" ;
+                     CoffeeShop:mobileNumber "+306922324672" ;
+                     CoffeeShop:worksInside "true"^^xsd:boolean ;
+                     CoffeeShop:worksOutside "false"^^xsd:boolean ;
+                     rdfs:label "Barista" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Barista_2
+CoffeeShop:Barista_2 rdf:type owl:NamedIndividual ,
+                              CoffeeShop:Barista ;
+                     CoffeeShop:hasRank CoffeeShop:head ;
+                     CoffeeShop:staffPayment CoffeeShop:baristaWage ;
+                     CoffeeShop:birthday "1995-07-27"^^xsd:date ;
+                     CoffeeShop:firstName "Giorgos" ;
+                     CoffeeShop:lastName "Tzaras" ;
+                     CoffeeShop:mobileNumber "+306931323332" ;
+                     CoffeeShop:worksInside "true"^^xsd:boolean ;
+                     CoffeeShop:worksOutside "false"^^xsd:boolean ;
+                     rdfs:label "Barista" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Barista_3
+CoffeeShop:Barista_3 rdf:type owl:NamedIndividual ,
+                              CoffeeShop:Barista ;
+                     CoffeeShop:hasRank CoffeeShop:junior ;
+                     CoffeeShop:staffPayment CoffeeShop:baristaWage ;
+                     CoffeeShop:birthday "1994-10-11"^^xsd:date ;
+                     CoffeeShop:firstName "Eleftheria" ;
+                     CoffeeShop:lastName "Karadhmou" ;
+                     CoffeeShop:mobileNumber "+306922398222" ;
+                     CoffeeShop:worksInside "true"^^xsd:boolean ;
+                     CoffeeShop:worksOutside "false"^^xsd:boolean ;
+                     rdfs:label "Barista" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Barista_4
+CoffeeShop:Barista_4 rdf:type owl:NamedIndividual ,
+                              CoffeeShop:Barista ;
+                     CoffeeShop:hasRank CoffeeShop:junior ;
+                     CoffeeShop:staffPayment CoffeeShop:baristaWage ;
+                     CoffeeShop:birthday "1996-02-19"^^xsd:date ;
+                     CoffeeShop:firstName "Katerina" ;
+                     CoffeeShop:lastName "Ioannidou" ;
+                     CoffeeShop:mobileNumber "+306921946679" ;
+                     CoffeeShop:worksInside "true"^^xsd:boolean ;
+                     CoffeeShop:worksOutside "false"^^xsd:boolean ;
+                     rdfs:label "Barista" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Beans_Coffee
+CoffeeShop:Beans_Coffee rdf:type owl:NamedIndividual ,
+                                 CoffeeShop:CoffeeSupply ;
+                        CoffeeShop:suppliedBy CoffeeShop:Supplier_2 ;
+                        rdfs:label "Coffebeans" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Beer_Black
+CoffeeShop:Beer_Black rdf:type owl:NamedIndividual ,
+                               CoffeeShop:Beer ;
+                      CoffeeShop:madeWith CoffeeShop:Bottle_Beer ;
+                      CoffeeShop:amountOfAlcohol 9.9 ;
+                      CoffeeShop:drinkPrice 5.8 ;
+                      CoffeeShop:isAlchoholic "true"^^xsd:boolean ;
+                      CoffeeShop:preparationTime 0.3 ;
+                      CoffeeShop:typeOfDrink "bottle Black Beer" ;
+                      rdfs:label "Beer Black" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Beer_Blond
+CoffeeShop:Beer_Blond rdf:type owl:NamedIndividual ,
+                               CoffeeShop:Beer ;
+                      CoffeeShop:madeWith CoffeeShop:Bottle_Beer ;
+                      CoffeeShop:amountOfAlcohol 7.5 ;
+                      CoffeeShop:drinkPrice 5 ;
+                      CoffeeShop:isAlchoholic "true"^^xsd:boolean ;
+                      CoffeeShop:preparationTime 0.3 ;
+                      CoffeeShop:typeOfDrink "bottle Blond Beer" ;
+                      rdfs:label "Beer Blond" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Beer_Red
+CoffeeShop:Beer_Red rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Beer ;
+                    CoffeeShop:madeWith CoffeeShop:Bottle_Beer ;
+                    CoffeeShop:amountOfAlcohol 9.6 ;
+                    CoffeeShop:drinkPrice 5 ;
+                    CoffeeShop:isAlchoholic "true"^^xsd:boolean ;
+                    CoffeeShop:preparationTime 0.3 ;
+                    CoffeeShop:typeOfDrink "bottle Red Beer" ;
+                    rdfs:label "Beer red" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Beer_Vice
+CoffeeShop:Beer_Vice rdf:type owl:NamedIndividual .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Beer_vice
+CoffeeShop:Beer_vice rdf:type owl:NamedIndividual ,
+                              CoffeeShop:Beer .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Bottle_Beer
+CoffeeShop:Bottle_Beer rdf:type owl:NamedIndividual ,
+                                CoffeeShop:BeerSupply ;
+                       CoffeeShop:suppliedBy CoffeeShop:Supplier_5 ;
+                       rdfs:label "Bottle drink" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Bottle_Juice
+CoffeeShop:Bottle_Juice rdf:type owl:NamedIndividual ,
+                                 CoffeeShop:JuiceSupply ;
+                        CoffeeShop:suppliedBy CoffeeShop:Supplier_1 ;
+                        rdfs:label "Bottle juice" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Bottle_Rum
+CoffeeShop:Bottle_Rum rdf:type owl:NamedIndividual ,
+                               CoffeeShop:RumSupply .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Bottle_Tea
+CoffeeShop:Bottle_Tea rdf:type owl:NamedIndividual ,
+                               CoffeeShop:TeaSupply ;
+                      CoffeeShop:suppliedBy CoffeeShop:Supplier_1 ;
+                      rdfs:label "Bottle tea" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Bottle_Tequila
+CoffeeShop:Bottle_Tequila rdf:type owl:NamedIndividual ,
+                                   CoffeeShop:TequilaSupply ;
+                          CoffeeShop:suppliedBy CoffeeShop:Supplier_5 ;
+                          rdfs:label "Tequila bottle" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Bottle_Whisky
+CoffeeShop:Bottle_Whisky rdf:type owl:NamedIndividual ,
+                                  CoffeeShop:WhiskySupply ;
+                         CoffeeShop:suppliedBy CoffeeShop:Supplier_5 ;
+                         rdfs:label "Bottle Whisky" ,
+                                    "Whisky Bottle" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Bottle_Wine
+CoffeeShop:Bottle_Wine rdf:type owl:NamedIndividual ,
+                                CoffeeShop:WineSupply ;
+                       CoffeeShop:suppliedBy CoffeeShop:Supplier_3 ;
+                       rdfs:label "Bottle Wine" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Client_10
+CoffeeShop:Client_10 rdf:type owl:NamedIndividual ,
+                              CoffeeShop:Client ;
+                     CoffeeShop:birthday "2002-04-29"^^xsd:date ;
+                     CoffeeShop:firstName "Filippos" ;
+                     CoffeeShop:isSmoking "true"^^xsd:boolean ;
+                     CoffeeShop:lastName "Petridis" ;
+                     CoffeeShop:mobileNumber "+306912345678" ;
+                     rdfs:label "Client" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Client_11
+CoffeeShop:Client_11 rdf:type owl:NamedIndividual ,
+                              CoffeeShop:Client ;
+                     CoffeeShop:birthday "1994-01-24"^^xsd:date ;
+                     CoffeeShop:firstName "Voula" ;
+                     CoffeeShop:isSmoking "true"^^xsd:boolean ;
+                     CoffeeShop:lastName "Ouzouni" ;
+                     CoffeeShop:mobileNumber "+306912345678" ;
+                     rdfs:label "Client" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Client_12
+CoffeeShop:Client_12 rdf:type owl:NamedIndividual ,
+                              CoffeeShop:Client ;
+                     CoffeeShop:birthday "1992-02-10"^^xsd:date ;
+                     CoffeeShop:firstName "Eleni" ;
+                     CoffeeShop:isSmoking "true"^^xsd:boolean ;
+                     CoffeeShop:lastName "Alexandrakou" ;
+                     CoffeeShop:mobileNumber "+306912345678" ;
+                     rdfs:label "Client" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Client_13
+CoffeeShop:Client_13 rdf:type owl:NamedIndividual ,
+                              CoffeeShop:Client ;
+                     CoffeeShop:birthday "1989-01-12"^^xsd:date ;
+                     CoffeeShop:firstName "Fotis" ;
+                     CoffeeShop:isSmoking "true"^^xsd:boolean ;
+                     CoffeeShop:lastName "Natsis" ;
+                     CoffeeShop:mobileNumber "+306912345678" ;
+                     rdfs:label "Client" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Client_2
+CoffeeShop:Client_2 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Client ;
+                    CoffeeShop:birthday "1993-03-02"^^xsd:date ;
+                    CoffeeShop:firstName "Marina" ;
+                    CoffeeShop:isSmoking "false"^^xsd:boolean ;
+                    CoffeeShop:lastName "Ioannou" ;
+                    CoffeeShop:mobileNumber "+306923491283" ;
+                    rdfs:label "Client" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Client_3
+CoffeeShop:Client_3 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Client ;
+                    CoffeeShop:birthday "1990-11-05"^^xsd:date ;
+                    CoffeeShop:firstName "Sakis" ;
+                    CoffeeShop:isSmoking "false"^^xsd:boolean ;
+                    CoffeeShop:lastName "Kontaras" ;
+                    CoffeeShop:mobileNumber "+306945121283" ;
+                    rdfs:label "Client" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Client_4
+CoffeeShop:Client_4 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Client ;
+                    CoffeeShop:birthday "1982-07-11"^^xsd:date ;
+                    CoffeeShop:firstName "Kuriaki" ;
+                    CoffeeShop:isSmoking "true"^^xsd:boolean ;
+                    CoffeeShop:lastName "Raptaki" ;
+                    CoffeeShop:mobileNumber "+3069109430" ;
+                    rdfs:label "Client" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Client_5
+CoffeeShop:Client_5 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Client ;
+                    CoffeeShop:birthday "2000-05-02"^^xsd:date ;
+                    CoffeeShop:firstName "Anastasios" ;
+                    CoffeeShop:isSmoking "false"^^xsd:boolean ;
+                    CoffeeShop:lastName "Kuriakidis" ;
+                    CoffeeShop:mobileNumber "+306923591132" ;
+                    rdfs:label "Client" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Client_6
+CoffeeShop:Client_6 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Client ;
+                    CoffeeShop:birthday "2000-02-19"^^xsd:date ;
+                    CoffeeShop:firstName "Maria" ;
+                    CoffeeShop:isSmoking "true"^^xsd:boolean ;
+                    CoffeeShop:lastName "Fotakidou" ;
+                    CoffeeShop:mobileNumber "+306912345678" ;
+                    rdfs:label "Client" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Client_7
+CoffeeShop:Client_7 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Client ;
+                    CoffeeShop:birthday "1994-12-22"^^xsd:date ;
+                    CoffeeShop:firstName "Kostantinous" ;
+                    CoffeeShop:isSmoking "true"^^xsd:boolean ;
+                    CoffeeShop:lastName "Metakidis" ;
+                    CoffeeShop:mobileNumber "+306912345678" ;
+                    rdfs:label "Client" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Client_8
+CoffeeShop:Client_8 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Client ;
+                    CoffeeShop:birthday "1994-10-30"^^xsd:date ;
+                    CoffeeShop:firstName "Alexandra" ;
+                    CoffeeShop:isSmoking "false"^^xsd:boolean ;
+                    CoffeeShop:lastName "Tamoulxidou" ;
+                    CoffeeShop:mobileNumber "+306912345678" ;
+                    rdfs:label "Client" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Client_9
+CoffeeShop:Client_9 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Client ;
+                    CoffeeShop:birthday "2003-05-05"^^xsd:date ;
+                    CoffeeShop:firstName "Timos" ;
+                    CoffeeShop:isSmoking "true"^^xsd:boolean ;
+                    CoffeeShop:lastName "Terkenlis" ;
+                    CoffeeShop:mobileNumber "+306912345678" ;
+                    rdfs:label "Client" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Cocktail1
+CoffeeShop:Cocktail1 rdf:type owl:NamedIndividual ;
+                     CoffeeShop:madeWith CoffeeShop:Bottle_Juice ,
+                                         CoffeeShop:Bottle_Rum ;
+                     CoffeeShop:isAlchoholic "true"^^xsd:boolean .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Coffee_Espresso
+CoffeeShop:Coffee_Espresso rdf:type owl:NamedIndividual ;
+                           CoffeeShop:madeWith CoffeeShop:Beans_Coffee ;
+                           CoffeeShop:amountOfCaffeine "24%" ;
+                           CoffeeShop:drinkPrice 3.0 ;
+                           CoffeeShop:isAlchoholic "false"^^xsd:boolean ;
+                           CoffeeShop:preparationTime 4.0 ;
+                           CoffeeShop:typeOfDrink "cup Espresso" ;
+                           rdfs:label "Coffee Espresso" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Coffee_Espresso_Cappuchino
+CoffeeShop:Coffee_Espresso_Cappuchino rdf:type owl:NamedIndividual ;
+                                      CoffeeShop:madeWith CoffeeShop:Beans_Coffee ,
+                                                          CoffeeShop:Milk ;
+                                      CoffeeShop:amountOfCaffeine "24%" ;
+                                      CoffeeShop:drinkPrice 3.0 ;
+                                      CoffeeShop:isAlchoholic "false"^^xsd:boolean ;
+                                      CoffeeShop:preparationTime 4.0 ;
+                                      CoffeeShop:typeOfDrink "cup Espresso Cappuchino" ;
+                                      rdfs:label "Coffee Espresso Cappuchino" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Coffee_Espresso_Cappuchino_Freddo
+CoffeeShop:Coffee_Espresso_Cappuchino_Freddo rdf:type owl:NamedIndividual ;
+                                             CoffeeShop:madeWith CoffeeShop:Beans_Coffee ,
+                                                                 CoffeeShop:Ice ,
+                                                                 CoffeeShop:Milk ;
+                                             CoffeeShop:amountOfCaffeine "24%" ;
+                                             CoffeeShop:drinkPrice 3.0 ;
+                                             CoffeeShop:isAlchoholic "false"^^xsd:boolean ;
+                                             CoffeeShop:preparationTime 4.0 ;
+                                             CoffeeShop:typeOfDrink "glass Espresso Cappuchino Freddo" ;
+                                             rdfs:label "Coffee Espresso Cappuchino Fredddo" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Coffee_Espresso_Freddo
+CoffeeShop:Coffee_Espresso_Freddo rdf:type owl:NamedIndividual ;
+                                  CoffeeShop:madeWith CoffeeShop:Beans_Coffee ,
+                                                      CoffeeShop:Ice ;
+                                  CoffeeShop:amountOfCaffeine "24%" ;
+                                  CoffeeShop:drinkPrice 3.0 ;
+                                  CoffeeShop:isAlchoholic "false"^^xsd:boolean ;
+                                  CoffeeShop:preparationTime 4.0 ;
+                                  CoffeeShop:typeOfDrink "glass Freddo Espresso" ;
+                                  rdfs:label "Coffee Espresso Freddo" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Coffee_Filter
+CoffeeShop:Coffee_Filter rdf:type owl:NamedIndividual ,
+                                  CoffeeShop:Coffee ;
+                         CoffeeShop:madeWith CoffeeShop:Ground_coffee ;
+                         CoffeeShop:amountOfCaffeine "16%" ;
+                         CoffeeShop:drinkPrice 2.80 ;
+                         CoffeeShop:preparationTime 6.0 ;
+                         CoffeeShop:typeOfDrink "cup filter" ;
+                         rdfs:label "Coffee Filter" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Evening1
+CoffeeShop:Evening1 rdf:type owl:NamedIndividual .
+
+
+###  http://test1.project.rdfs/CoffeeShop#EveningShift1
+CoffeeShop:EveningShift1 rdf:type owl:NamedIndividual ,
+                                  CoffeeShop:Shift ;
+                         CoffeeShop:baristaShift CoffeeShop:Barista_3 ;
+                         CoffeeShop:serverShift CoffeeShop:Server_4 ;
+                         CoffeeShop:day "Monday" ;
+                         CoffeeShop:endingTime "01:00:00"^^xsd:time ;
+                         CoffeeShop:startingTime "17:00:00"^^xsd:time ;
+                         rdfs:label "Shift" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#EveningShift2
+CoffeeShop:EveningShift2 rdf:type owl:NamedIndividual ,
+                                  CoffeeShop:Shift ;
+                         CoffeeShop:baristaShift CoffeeShop:Barista_3 ;
+                         CoffeeShop:serverShift CoffeeShop:Server_4 ;
+                         CoffeeShop:day "Tuesday" ;
+                         CoffeeShop:endingTime "01:00:00"^^xsd:time ;
+                         CoffeeShop:startingTime "16:00:00"^^xsd:time ;
+                         rdfs:label "Shift" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#EveningShift3
+CoffeeShop:EveningShift3 rdf:type owl:NamedIndividual ,
+                                  CoffeeShop:Shift ;
+                         CoffeeShop:baristaShift CoffeeShop:Barista_4 ;
+                         CoffeeShop:serverShift CoffeeShop:Server_3 ;
+                         CoffeeShop:day "Wednesday" ;
+                         CoffeeShop:endingTime "01:00:00"^^xsd:time ;
+                         CoffeeShop:startingTime "16:00:00"^^xsd:time ;
+                         rdfs:label "Shift" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#EveningShift4
+CoffeeShop:EveningShift4 rdf:type owl:NamedIndividual ,
+                                  CoffeeShop:Shift ;
+                         CoffeeShop:baristaShift CoffeeShop:Barista_4 ;
+                         CoffeeShop:serverShift CoffeeShop:Server_3 ;
+                         CoffeeShop:day "Thursday" ;
+                         CoffeeShop:endingTime "01:00:00"^^xsd:time ;
+                         CoffeeShop:startingTime "17:00:00"^^xsd:time ;
+                         rdfs:label "Shift" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#EveningShift5
+CoffeeShop:EveningShift5 rdf:type owl:NamedIndividual ,
+                                  CoffeeShop:Shift ;
+                         CoffeeShop:baristaShift CoffeeShop:Barista_3 ;
+                         CoffeeShop:serverShift CoffeeShop:Server_3 ;
+                         CoffeeShop:day "Friday" ;
+                         CoffeeShop:endingTime "01:00:00"^^xsd:time ;
+                         CoffeeShop:startingTime "16:00:00"^^xsd:time ;
+                         rdfs:label "Shift" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#EveningShift6
+CoffeeShop:EveningShift6 rdf:type owl:NamedIndividual ,
+                                  CoffeeShop:Shift ;
+                         CoffeeShop:baristaShift CoffeeShop:Barista_3 ;
+                         CoffeeShop:serverShift CoffeeShop:Server_3 ;
+                         CoffeeShop:day "Saturday" ;
+                         CoffeeShop:endingTime "01:00:00"^^xsd:time ;
+                         CoffeeShop:startingTime "17:00:00"^^xsd:time ;
+                         rdfs:label "Shift" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#EveningShift7
+CoffeeShop:EveningShift7 rdf:type owl:NamedIndividual ,
+                                  CoffeeShop:Shift ;
+                         CoffeeShop:baristaShift CoffeeShop:Barista_3 ;
+                         CoffeeShop:serverShift CoffeeShop:Server_3 ;
+                         CoffeeShop:day "Sunday" ;
+                         CoffeeShop:endingTime "01:00:00"^^xsd:time ;
+                         CoffeeShop:startingTime "16:00:00"^^xsd:time ;
+                         rdfs:label "Shift" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#FridayArrival_1
+CoffeeShop:FridayArrival_1 rdf:type owl:NamedIndividual ,
+                                    CoffeeShop:Arrival ;
+                           CoffeeShop:comingDay "Friday" ;
+                           CoffeeShop:comingTime "08:30:00"^^xsd:time ;
+                           CoffeeShop:leavingTime "10:30:00"^^xsd:time ;
+                           rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#FridayArrival_2
+CoffeeShop:FridayArrival_2 rdf:type owl:NamedIndividual ,
+                                    CoffeeShop:Arrival ;
+                           CoffeeShop:comingDay "Friday" ;
+                           CoffeeShop:comingTime "09:12:00"^^xsd:time ;
+                           CoffeeShop:leavingTime "11:00:00"^^xsd:time ;
+                           rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#FridayArrival_3
+CoffeeShop:FridayArrival_3 rdf:type owl:NamedIndividual ,
+                                    CoffeeShop:Arrival ;
+                           CoffeeShop:comingDay "Friday" ;
+                           CoffeeShop:comingTime "19:12:00"^^xsd:time ;
+                           CoffeeShop:leavingTime "21:00:00"^^xsd:time ;
+                           rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Green_Tea
+CoffeeShop:Green_Tea rdf:type owl:NamedIndividual ,
+                              CoffeeShop:Tea ;
+                     CoffeeShop:madeWith CoffeeShop:Bottle_Tea ;
+                     CoffeeShop:amountOfCaffeine "6%" ;
+                     CoffeeShop:drinkPrice 2.60 ;
+                     CoffeeShop:preparationTime 3.0 ;
+                     CoffeeShop:typeOfDrink "glass green tea" ;
+                     rdfs:label "Green Tea" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Ground_coffee
+CoffeeShop:Ground_coffee rdf:type owl:NamedIndividual ,
+                                  CoffeeShop:CoffeeSupply ;
+                         CoffeeShop:suppliedBy CoffeeShop:Supplier_1 ;
+                         rdfs:label "Ground Coffee" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Ice
+CoffeeShop:Ice rdf:type owl:NamedIndividual ,
+                        CoffeeShop:OtherSupplies ;
+               CoffeeShop:suppliedBy CoffeeShop:Supplier_6 ;
+               rdfs:label "Ice" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Lemon_Tea
+CoffeeShop:Lemon_Tea rdf:type owl:NamedIndividual ,
+                              CoffeeShop:Tea ;
+                     CoffeeShop:madeWith CoffeeShop:Bottle_Tea ;
+                     CoffeeShop:amountOfCaffeine "6%" ;
+                     CoffeeShop:drinkPrice 2.60 ;
+                     CoffeeShop:preparationTime 3.0 ;
+                     CoffeeShop:typeOfDrink "glass lemon tea" ;
+                     rdfs:label "Lemon Tea" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Milk
+CoffeeShop:Milk rdf:type owl:NamedIndividual ,
+                         CoffeeShop:OtherSupplies ;
+                CoffeeShop:suppliedBy CoffeeShop:Supplier_6 ;
+                rdfs:label "Milk" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Mixed_Juice
+CoffeeShop:Mixed_Juice rdf:type owl:NamedIndividual ;
+                       CoffeeShop:madeWith CoffeeShop:Bottle_Juice ;
+                       CoffeeShop:amountOfCaffeine "0%" ;
+                       CoffeeShop:drinkPrice 2.20 ;
+                       CoffeeShop:isAlchoholic "false"^^xsd:boolean ;
+                       CoffeeShop:preparationTime 1.0 ;
+                       CoffeeShop:typeOfDrink "glass Mixed juice" ;
+                       rdfs:label "Mixed Juice" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#MondayArrival_1
+CoffeeShop:MondayArrival_1 rdf:type owl:NamedIndividual ,
+                                    CoffeeShop:Arrival ;
+                           CoffeeShop:comingDay "Monday" ;
+                           CoffeeShop:comingTime "08:32:00"^^xsd:time ;
+                           CoffeeShop:leavingTime "11:00:00"^^xsd:time ;
+                           rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#MondayArrival_2
+CoffeeShop:MondayArrival_2 rdf:type owl:NamedIndividual ,
+                                    CoffeeShop:Arrival ;
+                           CoffeeShop:comingDay "Monday" ;
+                           CoffeeShop:comingTime "19:00:00"^^xsd:time ;
+                           CoffeeShop:leavingTime "21:33:00"^^xsd:time ;
+                           rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#MondayArrival_3
+CoffeeShop:MondayArrival_3 rdf:type owl:NamedIndividual ,
+                                    CoffeeShop:Arrival ;
+                           CoffeeShop:comingDay "Monday" ;
+                           CoffeeShop:comingTime "23:00:00"^^xsd:time ;
+                           CoffeeShop:leavingTime "00:45:00"^^xsd:time ;
+                           rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#MondayArrival_4
+CoffeeShop:MondayArrival_4 rdf:type owl:NamedIndividual ,
+                                    CoffeeShop:Arrival ;
+                           CoffeeShop:comingDay "Monday" ;
+                           CoffeeShop:comingTime "22:12:00"^^xsd:time ;
+                           CoffeeShop:leavingTime "01:00:00"^^xsd:time ;
+                           rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Morning1
+CoffeeShop:Morning1 rdf:type owl:NamedIndividual .
+
+
+###  http://test1.project.rdfs/CoffeeShop#MorningShift1
+CoffeeShop:MorningShift1 rdf:type owl:NamedIndividual ,
+                                  CoffeeShop:Shift ;
+                         CoffeeShop:baristaShift CoffeeShop:Barista_1 ;
+                         CoffeeShop:serverShift CoffeeShop:Server_1 ;
+                         CoffeeShop:day "Monday" ;
+                         CoffeeShop:endingTime "17:00:00"^^xsd:time ;
+                         CoffeeShop:startingTime "08:00:00"^^xsd:time ;
+                         rdfs:label "Shift" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#MorningShift2
+CoffeeShop:MorningShift2 rdf:type owl:NamedIndividual ,
+                                  CoffeeShop:Shift ;
+                         CoffeeShop:baristaShift CoffeeShop:Barista_1 ;
+                         CoffeeShop:serverShift CoffeeShop:Server_1 ;
+                         CoffeeShop:day "Tuesday" ;
+                         CoffeeShop:endingTime "16:00:00"^^xsd:time ;
+                         CoffeeShop:startingTime "08:00:00"^^xsd:time ;
+                         rdfs:label "Shift" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#MorningShift3
+CoffeeShop:MorningShift3 rdf:type owl:NamedIndividual ,
+                                  CoffeeShop:Shift ;
+                         CoffeeShop:baristaShift CoffeeShop:Barista_1 ;
+                         CoffeeShop:serverShift CoffeeShop:Server_2 ;
+                         CoffeeShop:day "Wednesday" ;
+                         CoffeeShop:endingTime "16:00:00"^^xsd:time ;
+                         CoffeeShop:startingTime "08:00:00"^^xsd:time ;
+                         rdfs:label "Shift" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#MorningShift4
+CoffeeShop:MorningShift4 rdf:type owl:NamedIndividual ,
+                                  CoffeeShop:Shift ;
+                         CoffeeShop:baristaShift CoffeeShop:Barista_2 ;
+                         CoffeeShop:serverShift CoffeeShop:Server_2 ;
+                         CoffeeShop:day "Thursday" ;
+                         CoffeeShop:endingTime "17:00:00"^^xsd:time ;
+                         CoffeeShop:startingTime "08:00:00"^^xsd:time ;
+                         rdfs:label "Shift" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#MorningShift5
+CoffeeShop:MorningShift5 rdf:type owl:NamedIndividual ,
+                                  CoffeeShop:Shift ;
+                         CoffeeShop:baristaShift CoffeeShop:Barista_2 ;
+                         CoffeeShop:serverShift CoffeeShop:Server_1 ;
+                         CoffeeShop:day "Friday" ;
+                         CoffeeShop:endingTime "16:00:00"^^xsd:time ;
+                         CoffeeShop:startingTime "08:00:00"^^xsd:time ;
+                         rdfs:label "Shift" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#MorningShift6
+CoffeeShop:MorningShift6 rdf:type owl:NamedIndividual ,
+                                  CoffeeShop:Shift ;
+                         CoffeeShop:baristaShift CoffeeShop:Barista_1 ;
+                         CoffeeShop:serverShift CoffeeShop:Server_1 ;
+                         CoffeeShop:day "Saturday" ;
+                         CoffeeShop:endingTime "17:00:00"^^xsd:time ;
+                         CoffeeShop:startingTime "08:00:00"^^xsd:time ;
+                         rdfs:label "Shift" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#MorningShift7
+CoffeeShop:MorningShift7 rdf:type owl:NamedIndividual ,
+                                  CoffeeShop:Shift ;
+                         CoffeeShop:baristaShift CoffeeShop:Barista_1 ;
+                         CoffeeShop:serverShift CoffeeShop:Server_1 ;
+                         CoffeeShop:day "Sunday" ;
+                         CoffeeShop:endingTime "16:00:00"^^xsd:time ;
+                         CoffeeShop:startingTime "08:00:00"^^xsd:time ;
+                         rdfs:label "Shift" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Mountain_Tea
+CoffeeShop:Mountain_Tea rdf:type owl:NamedIndividual ;
+                        CoffeeShop:madeWith CoffeeShop:Bag_Tea ;
+                        CoffeeShop:amountOfCaffeine "5%" ;
+                        CoffeeShop:drinkPrice 2.30 ;
+                        CoffeeShop:isAlchoholic "false"^^xsd:boolean ;
+                        CoffeeShop:preparationTime 3.0 ;
+                        CoffeeShop:typeOfDrink "cup mountain tea" ;
+                        rdfs:label "Tea Mountain" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Oranges
+CoffeeShop:Oranges rdf:type owl:NamedIndividual ,
+                            CoffeeShop:OtherSupplies ;
+                   CoffeeShop:suppliedBy CoffeeShop:Supplier_1 ;
+                   rdfs:label "Oranges" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Order_1
+CoffeeShop:Order_1 rdf:type owl:NamedIndividual ,
+                            CoffeeShop:Order ;
+                   CoffeeShop:clientArrival CoffeeShop:MondayArrival_1 ;
+                   CoffeeShop:drinkOrdered CoffeeShop:Apple_Juice ;
+                   CoffeeShop:madeBy CoffeeShop:Barista_3 ;
+                   CoffeeShop:orderedBy CoffeeShop:Client_13 ;
+                   CoffeeShop:servedBy CoffeeShop:Server_4 ;
+                   rdfs:label "Order" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Order_10
+CoffeeShop:Order_10 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Order ;
+                    CoffeeShop:clientArrival CoffeeShop:SaturdayArrival_1 ;
+                    CoffeeShop:drinkOrdered CoffeeShop:Apple_Juice ;
+                    CoffeeShop:madeBy CoffeeShop:Barista_1 ;
+                    CoffeeShop:orderedBy CoffeeShop:Client_2 ;
+                    CoffeeShop:servedBy CoffeeShop:Server_1 ;
+                    rdfs:label "Order" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Order_11
+CoffeeShop:Order_11 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Order ;
+                    CoffeeShop:clientArrival CoffeeShop:SaturdayArrival_4 ;
+                    CoffeeShop:drinkOrdered CoffeeShop:Mountain_Tea ;
+                    CoffeeShop:madeBy CoffeeShop:Barista_3 ;
+                    CoffeeShop:orderedBy CoffeeShop:Client_11 ;
+                    CoffeeShop:servedBy CoffeeShop:Server_3 ;
+                    rdfs:label "Order" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Order_12
+CoffeeShop:Order_12 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Order ;
+                    CoffeeShop:clientArrival CoffeeShop:ThursdayArrival_1 ;
+                    CoffeeShop:drinkOrdered CoffeeShop:Coffee_Filter ;
+                    CoffeeShop:madeBy CoffeeShop:Barista_2 ;
+                    CoffeeShop:orderedBy CoffeeShop:Client_13 ;
+                    CoffeeShop:servedBy CoffeeShop:Server_2 ;
+                    rdfs:label "Order" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Order_13
+CoffeeShop:Order_13 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Order ;
+                    CoffeeShop:clientArrival CoffeeShop:WednesdayArrival_2 ;
+                    CoffeeShop:drinkOrdered CoffeeShop:Beer_Blond ,
+                                            CoffeeShop:Beer_Red ;
+                    CoffeeShop:madeBy CoffeeShop:Barista_3 ;
+                    CoffeeShop:orderedBy CoffeeShop:Client_13 ;
+                    CoffeeShop:servedBy CoffeeShop:Server_3 ;
+                    rdfs:label "Order 13" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Order_14
+CoffeeShop:Order_14 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Order ;
+                    CoffeeShop:clientArrival CoffeeShop:FridayArrival_3 ;
+                    CoffeeShop:drinkOrdered CoffeeShop:Red_Whine ,
+                                            CoffeeShop:Whisky_Burbon ,
+                                            CoffeeShop:Yellow_Tequila ;
+                    CoffeeShop:madeBy CoffeeShop:Barista_3 ;
+                    CoffeeShop:orderedBy CoffeeShop:Client_7 ;
+                    CoffeeShop:servedBy CoffeeShop:Server_2 ;
+                    rdfs:label "Order 14" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Order_15
+CoffeeShop:Order_15 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Order ;
+                    CoffeeShop:clientArrival CoffeeShop:TuesdayArrival_3 ;
+                    CoffeeShop:drinkOrdered CoffeeShop:Rum_Black ,
+                                            CoffeeShop:Whisky_Burbon ,
+                                            CoffeeShop:Whisky_Smoked ,
+                                            CoffeeShop:White_Wine ;
+                    CoffeeShop:madeBy CoffeeShop:Barista_4 ;
+                    CoffeeShop:orderedBy CoffeeShop:Client_7 ;
+                    CoffeeShop:servedBy CoffeeShop:Server_2 ;
+                    rdfs:label "Order 15" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Order_2
+CoffeeShop:Order_2 rdf:type owl:NamedIndividual ,
+                            CoffeeShop:Order ;
+                   CoffeeShop:clientArrival CoffeeShop:WednesdayArrival_1 ;
+                   CoffeeShop:drinkOrdered CoffeeShop:Mountain_Tea ;
+                   CoffeeShop:madeBy CoffeeShop:Barista_3 ;
+                   CoffeeShop:orderedBy CoffeeShop:Client_12 ;
+                   CoffeeShop:servedBy CoffeeShop:Server_4 ;
+                   rdfs:label "Order" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Order_3
+CoffeeShop:Order_3 rdf:type owl:NamedIndividual ,
+                            CoffeeShop:Order ;
+                   CoffeeShop:clientArrival CoffeeShop:WednesdayArrival_2 ;
+                   CoffeeShop:drinkOrdered CoffeeShop:Coffee_Filter ;
+                   CoffeeShop:madeBy CoffeeShop:Barista_3 ;
+                   CoffeeShop:orderedBy CoffeeShop:Client_11 ;
+                   CoffeeShop:servedBy CoffeeShop:Server_3 ;
+                   rdfs:label "Order" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Order_4
+CoffeeShop:Order_4 rdf:type owl:NamedIndividual ,
+                            CoffeeShop:Order ;
+                   CoffeeShop:clientArrival CoffeeShop:MondayArrival_2 ;
+                   CoffeeShop:drinkOrdered CoffeeShop:Apple_Juice ;
+                   CoffeeShop:madeBy CoffeeShop:Barista_3 ;
+                   CoffeeShop:orderedBy CoffeeShop:Client_2 ;
+                   CoffeeShop:servedBy CoffeeShop:Server_4 ;
+                   rdfs:label "Order" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Order_5
+CoffeeShop:Order_5 rdf:type owl:NamedIndividual ,
+                            CoffeeShop:Order ;
+                   CoffeeShop:clientArrival CoffeeShop:WednesdayArrival_4 ;
+                   CoffeeShop:drinkOrdered CoffeeShop:Mountain_Tea ;
+                   CoffeeShop:madeBy CoffeeShop:Barista_4 ;
+                   CoffeeShop:orderedBy CoffeeShop:Client_7 ;
+                   CoffeeShop:servedBy CoffeeShop:Server_3 ;
+                   rdfs:label "Order" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Order_6
+CoffeeShop:Order_6 rdf:type owl:NamedIndividual ,
+                            CoffeeShop:Order ;
+                   CoffeeShop:clientArrival CoffeeShop:FridayArrival_1 ;
+                   CoffeeShop:drinkOrdered CoffeeShop:Coffee_Filter ;
+                   CoffeeShop:madeBy CoffeeShop:Barista_2 ;
+                   CoffeeShop:orderedBy CoffeeShop:Client_9 ;
+                   CoffeeShop:servedBy CoffeeShop:Server_1 ;
+                   rdfs:label "Order" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Order_7
+CoffeeShop:Order_7 rdf:type owl:NamedIndividual ,
+                            CoffeeShop:Order ;
+                   CoffeeShop:clientArrival CoffeeShop:TuesdayArrival_3 ;
+                   CoffeeShop:drinkOrdered CoffeeShop:Apple_Juice ;
+                   CoffeeShop:madeBy CoffeeShop:Barista_3 ;
+                   CoffeeShop:orderedBy CoffeeShop:Client_8 ;
+                   CoffeeShop:servedBy CoffeeShop:Server_4 ;
+                   rdfs:label "Order" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Order_8
+CoffeeShop:Order_8 rdf:type owl:NamedIndividual ,
+                            CoffeeShop:Order ;
+                   CoffeeShop:clientArrival CoffeeShop:SundayArrival_2 ;
+                   CoffeeShop:drinkOrdered CoffeeShop:Mountain_Tea ;
+                   CoffeeShop:madeBy CoffeeShop:Barista_3 ;
+                   CoffeeShop:orderedBy CoffeeShop:Client_3 ;
+                   CoffeeShop:servedBy CoffeeShop:Server_3 ;
+                   rdfs:label "Order" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Order_9
+CoffeeShop:Order_9 rdf:type owl:NamedIndividual ,
+                            CoffeeShop:Order ;
+                   CoffeeShop:clientArrival CoffeeShop:SundayArrival_3 ;
+                   CoffeeShop:drinkOrdered CoffeeShop:Coffee_Filter ;
+                   CoffeeShop:madeBy CoffeeShop:Barista_3 ;
+                   CoffeeShop:orderedBy CoffeeShop:Client_4 ;
+                   CoffeeShop:servedBy CoffeeShop:Server_3 ;
+                   rdfs:label "Order" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Peach_Juice
+CoffeeShop:Peach_Juice rdf:type owl:NamedIndividual ;
+                       CoffeeShop:madeWith CoffeeShop:Bottle_Juice ;
+                       CoffeeShop:amountOfCaffeine "0%" ;
+                       CoffeeShop:drinkPrice 2.20 ;
+                       CoffeeShop:isAlchoholic "false"^^xsd:boolean ;
+                       CoffeeShop:preparationTime 1.0 ;
+                       CoffeeShop:typeOfDrink "glass peach juice" ;
+                       rdfs:label "Peach Juice" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Peach_Tea
+CoffeeShop:Peach_Tea rdf:type owl:NamedIndividual ;
+                     CoffeeShop:madeWith CoffeeShop:Bottle_Tea ;
+                     CoffeeShop:amountOfCaffeine "6%" ;
+                     CoffeeShop:drinkPrice 2.60 ;
+                     CoffeeShop:isAlchoholic "false"^^xsd:boolean ;
+                     CoffeeShop:preparationTime 3.0 ;
+                     CoffeeShop:typeOfDrink "glass peach tea" ;
+                     rdfs:label "Peach Tea" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Pineapple_Juice
+CoffeeShop:Pineapple_Juice rdf:type owl:NamedIndividual ;
+                           CoffeeShop:madeWith CoffeeShop:Bottle_Juice ;
+                           CoffeeShop:amountOfCaffeine "0%" ;
+                           CoffeeShop:drinkPrice 2.20 ;
+                           CoffeeShop:isAlchoholic "false"^^xsd:boolean ;
+                           CoffeeShop:preparationTime 1.0 ;
+                           CoffeeShop:typeOfDrink "glass pineApple juice" ;
+                           rdfs:label "PineApple Juice" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Red_Whine
+CoffeeShop:Red_Whine rdf:type owl:NamedIndividual ;
+                     CoffeeShop:madeWith CoffeeShop:Bottle_Wine ;
+                     CoffeeShop:amountOfAlcohol 14 ;
+                     CoffeeShop:drinkPrice 8.50 ;
+                     CoffeeShop:isAlchoholic "true"^^xsd:boolean ;
+                     CoffeeShop:preparationTime 2.5 ;
+                     CoffeeShop:typeOfDrink "glass Red wine" ;
+                     rdfs:label "Wine red" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Rose_Wine
+CoffeeShop:Rose_Wine rdf:type owl:NamedIndividual ;
+                     CoffeeShop:madeWith CoffeeShop:Bottle_Wine ;
+                     CoffeeShop:amountOfAlcohol 12 ;
+                     CoffeeShop:drinkPrice 6.50 ;
+                     CoffeeShop:isAlchoholic "true"^^xsd:boolean ;
+                     CoffeeShop:preparationTime 3.0 ;
+                     CoffeeShop:typeOfDrink "glass rose wine" ;
+                     rdfs:label "Rose wine" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Rum_Black
+CoffeeShop:Rum_Black rdf:type owl:NamedIndividual ;
+                     CoffeeShop:madeWith CoffeeShop:Bottle_Rum ;
+                     CoffeeShop:amountOfAlcohol 16 ;
+                     CoffeeShop:drinkPrice 7 ;
+                     CoffeeShop:isAlchoholic "true"^^xsd:boolean ;
+                     CoffeeShop:preparationTime 5.0 ;
+                     CoffeeShop:typeOfDrink "glass Black Rum" ;
+                     rdfs:label "Rum Black" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Rum_White
+CoffeeShop:Rum_White rdf:type owl:NamedIndividual ;
+                     CoffeeShop:madeWith CoffeeShop:Bottle_Rum ;
+                     CoffeeShop:amountOfAlcohol 14 ;
+                     CoffeeShop:drinkPrice 7 ;
+                     CoffeeShop:preparationTime 5.0 ;
+                     CoffeeShop:typeOfDrink "glass White Rum" ;
+                     rdfs:label "Rum White" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#SaturdayArrival_1
+CoffeeShop:SaturdayArrival_1 rdf:type owl:NamedIndividual ,
+                                      CoffeeShop:Arrival ;
+                             CoffeeShop:comingDay "Saturday" ;
+                             CoffeeShop:comingTime "08:12:00"^^xsd:time ;
+                             CoffeeShop:leavingTime "10:30:00"^^xsd:time ;
+                             rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#SaturdayArrival_2
+CoffeeShop:SaturdayArrival_2 rdf:type owl:NamedIndividual ,
+                                      CoffeeShop:Arrival ;
+                             CoffeeShop:comingDay "Saturday" ;
+                             CoffeeShop:comingTime "18:12:00"^^xsd:time ;
+                             CoffeeShop:leavingTime "19:45:00"^^xsd:time ;
+                             rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#SaturdayArrival_3
+CoffeeShop:SaturdayArrival_3 rdf:type owl:NamedIndividual ,
+                                      CoffeeShop:Arrival ;
+                             CoffeeShop:comingDay "Saturday" ;
+                             CoffeeShop:comingTime "19:00:00"^^xsd:time ;
+                             CoffeeShop:leavingTime "21:15:00"^^xsd:time ;
+                             rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#SaturdayArrival_4
+CoffeeShop:SaturdayArrival_4 rdf:type owl:NamedIndividual ,
+                                      CoffeeShop:Arrival ;
+                             CoffeeShop:comingDay "Saturday" ;
+                             CoffeeShop:comingTime "21:00:00"^^xsd:time ;
+                             CoffeeShop:leavingTime "23:00:00"^^xsd:time ;
+                             rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Server_1
+CoffeeShop:Server_1 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Server ;
+                    CoffeeShop:hasRank CoffeeShop:supervisor ;
+                    CoffeeShop:birthday "1993-11-29"^^xsd:date ;
+                    CoffeeShop:firstName "Kassiopi" ;
+                    CoffeeShop:lastName "Merakli" ;
+                    CoffeeShop:mobileNumber "+306921028609" ;
+                    CoffeeShop:worksInside "true"^^xsd:boolean ;
+                    CoffeeShop:worksOutside "true"^^xsd:boolean ;
+                    rdfs:label "Server" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Server_2
+CoffeeShop:Server_2 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Server ;
+                    CoffeeShop:hasRank CoffeeShop:head ;
+                    CoffeeShop:birthday "1997-02-22"^^xsd:date ;
+                    CoffeeShop:firstName "Drosoula" ;
+                    CoffeeShop:lastName "Kexagia" ;
+                    CoffeeShop:mobileNumber "+306920920172" ;
+                    CoffeeShop:worksInside "true"^^xsd:boolean ;
+                    CoffeeShop:worksOutside "true"^^xsd:boolean ;
+                    rdfs:label "Server" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Server_3
+CoffeeShop:Server_3 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Server ;
+                    CoffeeShop:hasRank CoffeeShop:junior ;
+                    CoffeeShop:birthday "1998-11-16"^^xsd:date ;
+                    CoffeeShop:firstName "Pantelis" ;
+                    CoffeeShop:lastName "Logothetis" ;
+                    CoffeeShop:mobileNumber "+306901281732" ;
+                    CoffeeShop:worksInside "true"^^xsd:boolean ;
+                    CoffeeShop:worksOutside "true"^^xsd:boolean ;
+                    rdfs:label "Server" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Server_4
+CoffeeShop:Server_4 rdf:type owl:NamedIndividual ,
+                             CoffeeShop:Server ;
+                    CoffeeShop:hasRank CoffeeShop:junior ;
+                    CoffeeShop:birthday "2001-09-01"^^xsd:date ;
+                    CoffeeShop:firstName "Leonidas" ;
+                    CoffeeShop:lastName "Papanikolaou" ;
+                    CoffeeShop:mobileNumber "+306901324023" ;
+                    CoffeeShop:worksInside "true"^^xsd:boolean ;
+                    CoffeeShop:worksOutside "true"^^xsd:boolean ;
+                    rdfs:label "Server" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#SundayArrival_1
+CoffeeShop:SundayArrival_1 rdf:type owl:NamedIndividual ,
+                                    CoffeeShop:Arrival ;
+                           CoffeeShop:comingDay "Sunday" ;
+                           CoffeeShop:comingTime "10:00:00"^^xsd:time ;
+                           CoffeeShop:leavingTime "11:30:00"^^xsd:time ;
+                           rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#SundayArrival_2
+CoffeeShop:SundayArrival_2 rdf:type owl:NamedIndividual ,
+                                    CoffeeShop:Arrival ;
+                           CoffeeShop:comingDay "Sunday" ;
+                           CoffeeShop:comingTime "09:12:00"^^xsd:time ;
+                           CoffeeShop:leavingTime "11:00:00"^^xsd:time ;
+                           rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#SundayArrival_3
+CoffeeShop:SundayArrival_3 rdf:type owl:NamedIndividual ,
+                                    CoffeeShop:Arrival ;
+                           CoffeeShop:comingDay "Sunday" ;
+                           CoffeeShop:comingTime "19:30:00"^^xsd:time ;
+                           CoffeeShop:leavingTime "21:30:00"^^xsd:time ;
+                           rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#SundayArrival_4
+CoffeeShop:SundayArrival_4 rdf:type owl:NamedIndividual ,
+                                    CoffeeShop:Arrival ;
+                           CoffeeShop:comingDay "Sunday" ;
+                           CoffeeShop:comingTime "22:00:00"^^xsd:time ;
+                           CoffeeShop:leavingTime "00:30:00"^^xsd:time ;
+                           rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#SundayArrival_5
+CoffeeShop:SundayArrival_5 rdf:type owl:NamedIndividual ,
+                                    CoffeeShop:Arrival ;
+                           CoffeeShop:comingDay "Sunday" ;
+                           CoffeeShop:comingTime "23:00:00"^^xsd:time ;
+                           CoffeeShop:leavingTime "01:00:00"^^xsd:time ;
+                           rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Supplier_1
+CoffeeShop:Supplier_1 rdf:type owl:NamedIndividual ,
+                               CoffeeShop:Supplier ;
+                      CoffeeShop:birthday "1973-01-30"^^xsd:date ;
+                      CoffeeShop:firstName "Giannis" ;
+                      CoffeeShop:lastName "Mparmpas" ;
+                      CoffeeShop:mobileNumber "+306922000672" ;
+                      rdfs:label "Supplier" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Supplier_2
+CoffeeShop:Supplier_2 rdf:type owl:NamedIndividual ,
+                               CoffeeShop:Supplier ;
+                      CoffeeShop:birthday "1969-08-22"^^xsd:date ;
+                      CoffeeShop:firstName "Grigoris" ;
+                      CoffeeShop:lastName "Lamprakis" ;
+                      CoffeeShop:mobileNumber "+306922324672" ;
+                      rdfs:label "Supplier" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Supplier_3
+CoffeeShop:Supplier_3 rdf:type owl:NamedIndividual ,
+                               CoffeeShop:Supplier ;
+                      CoffeeShop:birthday "1964-09-04"^^xsd:date ;
+                      CoffeeShop:firstName "Mpampis" ;
+                      CoffeeShop:lastName "Anastasiou" ;
+                      CoffeeShop:mobileNumber "+306922324672" ;
+                      rdfs:label "Supplier" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Supplier_4
+CoffeeShop:Supplier_4 rdf:type owl:NamedIndividual ,
+                               CoffeeShop:Supplier ;
+                      CoffeeShop:birthday "1974-10-21"^^xsd:date ;
+                      CoffeeShop:firstName "Amalia" ;
+                      CoffeeShop:lastName "Evagelou" ;
+                      CoffeeShop:mobileNumber "+306912324000" ;
+                      rdfs:label "Supplier" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Supplier_5
+CoffeeShop:Supplier_5 rdf:type owl:NamedIndividual ,
+                               CoffeeShop:Supplier ;
+                      CoffeeShop:birthday "1997-12-08"^^xsd:date ;
+                      CoffeeShop:firstName "Grigoris" ;
+                      CoffeeShop:lastName "Mauromatis" ;
+                      CoffeeShop:mobileNumber "+306974616859" ;
+                      rdfs:label "Supplier" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Supplier_6
+CoffeeShop:Supplier_6 rdf:type owl:NamedIndividual ,
+                               CoffeeShop:Supplier ;
+                      CoffeeShop:birthday "1987-12-02"^^xsd:date ;
+                      CoffeeShop:firstName "Manolis" ;
+                      CoffeeShop:lastName "Delaportas" ;
+                      CoffeeShop:mobileNumber "+30694315862" ;
+                      rdfs:label "Supplier" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Tea_Square
+CoffeeShop:Tea_Square rdf:type owl:NamedIndividual ;
+                      CoffeeShop:madeWith CoffeeShop:Bag_Tea ;
+                      CoffeeShop:amountOfCaffeine "2%" ;
+                      CoffeeShop:drinkPrice 2.50 ;
+                      CoffeeShop:isAlchoholic "false"^^xsd:boolean ;
+                      CoffeeShop:preparationTime 2.0 ;
+                      CoffeeShop:typeOfDrink "cup red tea" ;
+                      rdfs:label "Tea Square" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#ThursdayArrival_1
+CoffeeShop:ThursdayArrival_1 rdf:type owl:NamedIndividual ,
+                                      CoffeeShop:Arrival ;
+                             CoffeeShop:comingDay "Thursday" ;
+                             CoffeeShop:comingTime "10:12:00"^^xsd:time ;
+                             CoffeeShop:leavingTime "11:30:00"^^xsd:time ;
+                             rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#ThursdayArrival_2
+CoffeeShop:ThursdayArrival_2 rdf:type owl:NamedIndividual ,
+                                      CoffeeShop:Arrival ;
+                             CoffeeShop:comingDay "Thursday" ;
+                             CoffeeShop:comingTime "11:00:00"^^xsd:time ;
+                             CoffeeShop:leavingTime "12:30:00"^^xsd:time ;
+                             rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#ThursdayArrival_3
+CoffeeShop:ThursdayArrival_3 rdf:type owl:NamedIndividual ,
+                                      CoffeeShop:Arrival ;
+                             CoffeeShop:comingDay "Thursday" ;
+                             CoffeeShop:comingTime "19:00:00"^^xsd:time ;
+                             CoffeeShop:leavingTime "21:00:00"^^xsd:time ;
+                             rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#TuesdayArrival_1
+CoffeeShop:TuesdayArrival_1 rdf:type owl:NamedIndividual ,
+                                     CoffeeShop:Arrival ;
+                            CoffeeShop:comingDay "Tuesday" ;
+                            CoffeeShop:comingTime "10:55:00"^^xsd:time ;
+                            CoffeeShop:leavingTime "12:55:00"^^xsd:time ;
+                            rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#TuesdayArrival_2
+CoffeeShop:TuesdayArrival_2 rdf:type owl:NamedIndividual ,
+                                     CoffeeShop:Arrival ;
+                            CoffeeShop:comingDay "Tuesday" ;
+                            CoffeeShop:comingTime "08:35:00"^^xsd:time ;
+                            CoffeeShop:leavingTime "10:55:00"^^xsd:time ;
+                            rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#TuesdayArrival_3
+CoffeeShop:TuesdayArrival_3 rdf:type owl:NamedIndividual ,
+                                     CoffeeShop:Arrival ;
+                            CoffeeShop:comingDay "Tuesday" ;
+                            CoffeeShop:comingTime "18:55:00"^^xsd:time ;
+                            CoffeeShop:leavingTime "20:20:00"^^xsd:time ;
+                            rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#WednesdayArrival_1
+CoffeeShop:WednesdayArrival_1 rdf:type owl:NamedIndividual ,
+                                       CoffeeShop:Arrival ;
+                              CoffeeShop:comingDay "Wednesday" ;
+                              CoffeeShop:comingTime "10:55:00"^^xsd:time ;
+                              CoffeeShop:leavingTime "12:55:00"^^xsd:time ;
+                              rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#WednesdayArrival_2
+CoffeeShop:WednesdayArrival_2 rdf:type owl:NamedIndividual ,
+                                       CoffeeShop:Arrival ;
+                              CoffeeShop:comingDay "Wednesday" ;
+                              CoffeeShop:comingTime "08:20:00"^^xsd:time ;
+                              CoffeeShop:leavingTime "10:00:00"^^xsd:time ;
+                              rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#WednesdayArrival_3
+CoffeeShop:WednesdayArrival_3 rdf:type owl:NamedIndividual ,
+                                       CoffeeShop:Arrival ;
+                              CoffeeShop:comingDay "Wednesday" ;
+                              CoffeeShop:comingTime "17:55:00"^^xsd:time ;
+                              CoffeeShop:leavingTime "19:55:00"^^xsd:time ;
+                              rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#WednesdayArrival_4
+CoffeeShop:WednesdayArrival_4 rdf:type owl:NamedIndividual ,
+                                       CoffeeShop:Arrival ;
+                              CoffeeShop:comingDay "Wednesday" ;
+                              CoffeeShop:comingTime "20:55:00"^^xsd:time ;
+                              CoffeeShop:leavingTime "22:55:00"^^xsd:time ;
+                              rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#WednesdayArrival_5
+CoffeeShop:WednesdayArrival_5 rdf:type owl:NamedIndividual ,
+                                       CoffeeShop:Arrival ;
+                              CoffeeShop:comingDay "Wednesday" ;
+                              CoffeeShop:comingTime "22:55:00"^^xsd:time ;
+                              CoffeeShop:leavingTime "00:12:00"^^xsd:time ;
+                              rdfs:label "Arrival" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Whisky_Burbon
+CoffeeShop:Whisky_Burbon rdf:type owl:NamedIndividual ;
+                         CoffeeShop:madeWith CoffeeShop:Bottle_Whisky ;
+                         CoffeeShop:amountOfAlcohol 30 ;
+                         CoffeeShop:drinkPrice 9 ;
+                         CoffeeShop:isAlchoholic "true"^^xsd:boolean ;
+                         CoffeeShop:preparationTime 2.0 ;
+                         CoffeeShop:typeOfDrink "glass Burbon Whisky" ;
+                         rdfs:label "Whisky Burbon" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Whisky_Irish
+CoffeeShop:Whisky_Irish rdf:type owl:NamedIndividual ;
+                        CoffeeShop:madeWith CoffeeShop:Bottle_Whisky ;
+                        CoffeeShop:amountOfAlcohol 38 ;
+                        CoffeeShop:drinkPrice 11 ;
+                        CoffeeShop:isAlchoholic "true"^^xsd:boolean ;
+                        CoffeeShop:preparationTime 2.0 ;
+                        CoffeeShop:typeOfDrink "glass Irish Whisky" ;
+                        rdfs:label "Whisky Irish" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Whisky_Smoked
+CoffeeShop:Whisky_Smoked rdf:type owl:NamedIndividual ;
+                         CoffeeShop:madeWith CoffeeShop:Bottle_Whisky ;
+                         CoffeeShop:amountOfAlcohol 33 ;
+                         CoffeeShop:drinkPrice 12 ;
+                         CoffeeShop:isAlchoholic "true"^^xsd:boolean ;
+                         CoffeeShop:preparationTime 2.0 ;
+                         CoffeeShop:typeOfDrink "glass Smoked Whisky" ;
+                         rdfs:label "Whisky Smoked" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#White_Tequila
+CoffeeShop:White_Tequila rdf:type owl:NamedIndividual ;
+                         CoffeeShop:madeWith CoffeeShop:Bottle_Tequila ;
+                         CoffeeShop:amountOfAlcohol 21 ;
+                         CoffeeShop:drinkPrice 7 ;
+                         CoffeeShop:isAlchoholic "true"^^xsd:boolean ;
+                         CoffeeShop:preparationTime 4.0 ;
+                         CoffeeShop:typeOfDrink "glass White Tequila" ;
+                         rdfs:label "Tequila White" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#White_Wine
+CoffeeShop:White_Wine rdf:type owl:NamedIndividual ;
+                      CoffeeShop:madeWith CoffeeShop:Bottle_Wine ;
+                      CoffeeShop:amountOfAlcohol 12 ;
+                      CoffeeShop:drinkPrice 6.50 ;
+                      CoffeeShop:isAlchoholic "true"^^xsd:boolean ;
+                      CoffeeShop:preparationTime 3.0 ;
+                      CoffeeShop:typeOfDrink "glass White wine" ;
+                      rdfs:label "Wine White" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#Yellow_Tequila
+CoffeeShop:Yellow_Tequila rdf:type owl:NamedIndividual ;
+                          CoffeeShop:madeWith CoffeeShop:Bottle_Tequila ;
+                          CoffeeShop:amountOfAlcohol 23 ;
+                          CoffeeShop:drinkPrice 8 ;
+                          CoffeeShop:isAlchoholic "true"^^xsd:boolean ;
+                          CoffeeShop:preparationTime 4.0 ;
+                          CoffeeShop:typeOfDrink "glass Yellow Tequila" ;
+                          rdfs:label "Tequila Yellow" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#baristaWage
+CoffeeShop:baristaWage rdf:type owl:NamedIndividual ,
+                                CoffeeShop:Wage ;
+                       rdfs:label "Wage" .
+
+
+###  http://test1.project.rdfs/CoffeeShop#head
+CoffeeShop:head rdf:type owl:NamedIndividual ,
+                         CoffeeShop:Rank ;
+                CoffeeShop:oversees CoffeeShop:junior .
+
+
+###  http://test1.project.rdfs/CoffeeShop#junior
+CoffeeShop:junior rdf:type owl:NamedIndividual ,
+                           CoffeeShop:Rank .
+
+
+###  http://test1.project.rdfs/CoffeeShop#supervisor
+CoffeeShop:supervisor rdf:type owl:NamedIndividual ,
+                               CoffeeShop:Rank ;
+                      CoffeeShop:oversees CoffeeShop:head .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( CoffeeShop:BeerSupply
+                CoffeeShop:CoffeeSupply
+                CoffeeShop:JuiceSupply
+                CoffeeShop:OtherSupplies
+                CoffeeShop:RumSupply
+                CoffeeShop:TeaSupply
+                CoffeeShop:WhiskySupply
+                CoffeeShop:WineSupply
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( CoffeeShop:BeerSupply
+                CoffeeShop:CoffeeSupply
+                CoffeeShop:JuiceSupply
+                CoffeeShop:RumSupply
+                CoffeeShop:TeaSupply
+                CoffeeShop:WhiskySupply
+                CoffeeShop:WineSupply
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
